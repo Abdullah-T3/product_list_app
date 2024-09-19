@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:product_list_app/viewModel/product_cubit.dart';
+import 'package:product_list_app/views/product_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,13 +13,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const Scaffold()
+    return BlocProvider(
+      create: (context) => ProductCubit(),
+      child: const MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          home: Scaffold(body: ProductView())),
     );
   }
 }
